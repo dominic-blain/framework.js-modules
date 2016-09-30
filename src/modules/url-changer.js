@@ -139,6 +139,8 @@
 						if (_currentPageFragment != pageFragment) {
 							App.mediator.notify('page.fragmentChanged', pageFragment);
 							_currentPageFragment = pageFragment;
+							//Sync Qs
+							_extractQS();
 						} else {
 							App.mediator.notify('page.sameFragmentRequested', pageFragment);
 						}
@@ -359,7 +361,6 @@
 		
 		//Set back old fragment to trigger fragment changed
 		_currentPageFragment = _oldFragment;
-		_extractQS();
 		_currentStrategy.urlChanged();
 		$.sendPageView({page: data.route});
 	};
