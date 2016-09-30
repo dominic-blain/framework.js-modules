@@ -315,10 +315,10 @@
 		return result;
 	};
 	
-	var onUpdateQsFragment = function (key, data, e) {
-		if ($.isPlainObject(data)) {
+	var onUpdateQsFragment = function (key, options, e) {
+		if ($.isPlainObject(options.qs)) {
 			//Update _currentQsFragment
-			$.extend(_currentQsFragment, data);
+			$.extend(_currentQsFragment, options.qs);
 			
 			var currentQsIndex = _currentPageFragment.indexOf('?'),
 			newQsString = _generateQsString();
@@ -326,7 +326,11 @@
 			if (newQsString !== _currentPageFragment) {
 				//Generate new page fragment
 				if (!newQsString.length) {
-					_currentPageFragment = '';
+
+					//Trim all existing qs
+					if (currentQsIndex !== -1) {
+						_currentPageFragment = _currentPageFragment.split('?')[0];
+					}
 				} else if (currentQsIndex === -1) {
 					_currentPageFragment += '?' + newQsString;
 				} else {
@@ -336,7 +340,13 @@
 				
 				//_currentPage
 				_currentStrategy.updateUrlFragment();
-				$.sendPageView({page: data.route});
+
+				if(options.raiseFragmentChanged){
+					App.mediator.notify('page.fragmentChanged', _currentPageFragment);
+				}
+
+				//??? options.route doesnt exists....
+				$.sendPageView({page: options.route});
 			}
 		}
 	};
