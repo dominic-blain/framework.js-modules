@@ -53,8 +53,7 @@
 	
 	var extractFragmentFromRoute = function (nextRoute, reelRoute) {
 		var	starIndex = !nextRoute ? -1 : nextRoute.indexOf('*');
-		
-		if (starIndex > -1) {
+		var processStar = function () {
 			nextRoute = nextRoute.substring(0, starIndex);
 			
 			//We got some fragment also
@@ -66,7 +65,9 @@
 				currentPageFragment = '';
 				currentQsFragment = {};
 			}
-		} else {
+		};
+
+		var processNoStar = function () {
 			//Keep Search and Hash has a fragment if we have a # or ? after the
 			if (reelRoute.length > nextRoute.length) {
 				var charAfter = reelRoute[nextRoute.length];
@@ -80,6 +81,12 @@
 				currentPageFragment = '';
 				currentQsFragment = {};
 			}
+		};
+
+		if (starIndex > -1) {
+			processStar();
+		} else {
+			processNoStar();
 		}
 		return nextRoute;
 	};
@@ -199,18 +206,6 @@
 		}
 	};
 	
-	var onNavigateToCurrent = function (key, data, e) {
-		var oldFragment = currentPageFragment;
-		
-		extractFragmentFromRoute(getNextRouteFromData(data), data.route);
-		updateUrlFragment();
-		
-		//Set back old fragment to trigger fragment changed
-		currentPageFragment = oldFragment;
-		urlChanged();
-		$.sendPageView({page: data.route});
-	};
-	
 	var urlChanged = function () {
 		var nextPage = App.pages.page(window.location.pathname);
 		
@@ -241,6 +236,18 @@
 		} else {
 			App.log({args: 'Page not found', me: 'Url Changer'});
 		}
+	};
+
+	var onNavigateToCurrent = function (key, data, e) {
+		var oldFragment = currentPageFragment;
+		
+		extractFragmentFromRoute(getNextRouteFromData(data), data.route);
+		updateUrlFragment();
+		
+		//Set back old fragment to trigger fragment changed
+		currentPageFragment = oldFragment;
+		urlChanged();
+		$.sendPageView({page: data.route});
 	};
 	
 	var getCurrentUrl = function () {
