@@ -32,6 +32,7 @@
 		$.fn.mediaPlay = factory('play');
 		$.fn.mediaPause = factory('pause');
 		$.fn.mediaLoad = factory('load');
+		$.fn.mediaMuted = factory('muted');
 		$.fn.mediaCurrentTime = factory('currentTime');
 	})($);
 	
@@ -76,6 +77,10 @@
 
 		var seekVideo = function (time) {
 			o.video.mediaCurrentTime(time);
+		};
+
+		var toggleMute = function () {
+			o.video[0].muted = !o.video[0].muted;
 		};
 
 		var resizeVideo = function () {
@@ -140,7 +145,8 @@
 			load: loadVideo,
 			play: playVideo,
 			pause: pauseVideo,
-			seek: seekVideo
+			seek: seekVideo,
+			toggleMute: toggleMute
 		};
 	});
 	
