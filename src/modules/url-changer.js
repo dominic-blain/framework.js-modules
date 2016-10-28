@@ -172,27 +172,38 @@
 	
 	var onUpdateQsFragment = function (key, options, e) {
 		if ($.isPlainObject(options.qs)) {
+			var oldQsFragmentString = window.QueryStringParser.stringify(_currentQsFragment);
+
 			//Update currentQsFragment
 			$.extend(currentQsFragment, options.qs);
 			
+			var currentUrlWithoutHash = _currentPageFragment.split('#')[0];
+			var currentHash = _currentPageFragment.split('#')[1];
+
 			var currentQsIndex = currentPageFragment.indexOf('?'),
 			newQsString = generateQsString();
 			
-			if (newQsString !== currentPageFragment) {
+			if (('?' + newQsString) !== oldQsFragmentString) {
 				//Generate new page fragment
 				if (!newQsString.length) {
 
 					//Trim all existing qs
 					if (currentQsIndex !== -1) {
-						currentPageFragment = currentPageFragment.split('?')[0];
+						_currentPageFragment = currentUrlWithoutHash.split('?')[0];
 					}
 				} else if (currentQsIndex === -1) {
-					currentPageFragment += '?' + newQsString;
+					_currentPageFragment = currentUrlWithoutHash + '?' + newQsString;
+
 				} else {
-					currentPageFragment = currentPageFragment.substring(0, currentQsIndex + 1) +
+					currentPageFragment = currentUrlWithoutHash.substring(0, currentQsIndex + 1) +
 						newQsString;
 				}
-				
+
+				//Append back hash value
+				if (currentHash.length) {
+					_currentPageFragment += '#' + currentHash;
+				}
+
 				//_currentPage
 				updateUrlFragment();
 
