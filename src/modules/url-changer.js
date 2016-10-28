@@ -199,9 +199,6 @@
 				if (options.raiseFragmentChanged) {
 					App.mediator.notify('page.fragmentChanged', currentPageFragment);
 				}
-
-				//??? options.route doesnt exists....
-				$.sendPageView({page: options.route});
 			}
 		}
 	};
