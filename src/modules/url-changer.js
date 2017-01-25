@@ -9,7 +9,6 @@
 	
 	'use strict';
 	
-	var win = $(window);
 	var currentPageKey = '';
 	var currentPageRoute = '';
 	var currentPageUrl = '';
@@ -41,6 +40,14 @@
 		} else {
 			currentQsFragment = {};
 		}
+	};
+
+	var onReplaceState = function (key, data) {
+		var innerData = {
+			scrollPos: $(window).scrollTop()
+		};
+
+		window.history.replaceState($.extend({}, innerData, data.data), data.title, data.url);
 	};
 
 	var onPagesLoading = function () {
@@ -217,7 +224,7 @@
 				}
 
 				//Append back hash value
-				if (currentHash.length) {
+				if (currentHash && currentHash.length) {
 					currentPageFragment += '#' + currentHash;
 				}
 
@@ -275,29 +282,6 @@
 		$.sendPageView({page: data.route});
 	};
 	
-	var getCurrentUrl = function () {
-		return window.location.pathname;
-	};
-	
-	var getQueryString = function () {
-		return window.location.search;
-	};
-
-	var getFullUrl = function () {
-		return window.location.toString();
-	};
-
-	var onReplaceState = function (key, data) {
-		var innerData = {
-			scrollPos: win.scrollTop()
-		};
-
-		//Keep local cache in sync if url changed
-		//if (data.url != )
-
-		window.history.replaceState($.extend({}, innerData, data.data) , data.title, data.url);
-	};
-
 	var throttledScroll = _.throttle(function () {
 		onReplaceState(null, {
 			title: document.title,
@@ -312,7 +296,7 @@
 	var init = function () {
 		//Detect good strategy
 		if (window.history.pushState) {
-			win.on('popstate', function (e) {
+			$(window).on('popstate', function (e) {
 
 				App.modules.notify('history.popState', {
 					previousUrl: currentPageUrl,
@@ -347,9 +331,15 @@
 				loading: onPagesLoading
 			},
 			url: {
-				getUrl: getCurrentUrl,
-				getQueryString: getQueryString,
-				getFullUrl: getFullUrl
+				getUrl: function () {
+					return window.location.pathname;
+				},
+				getQueryString: function () {
+					return window.location.search;
+				},
+				getFullUrl: function () {
+					return window.location.toString();
+				}
 			}
 		};
 	};
