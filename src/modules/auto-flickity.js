@@ -9,7 +9,7 @@
  *  |    |    |- CELL (REPEATED): .js-auto-flickity-cell
  *
  *  Requirements:
- *		- https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.2/flickity.pkgd.min.js
+ *		- https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.0/flickity.pkgd.min.js
  *		- Component Flickity.js
  *
  *  You can have more info on the options of Flickity at
