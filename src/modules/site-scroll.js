@@ -22,15 +22,15 @@
 	var selectors = {
 		scrollingZone: '.js-scrolling-zone',
 		scrollingZoneContent: '.js-scrolling-zone-content'
-	}
+	};
 	
 	var keys = {
-		'ArrowDown': true,
-		'ArrowUp': true,
-		'End': true,
-		'Home': true,
-		'PageDown': true,
-		'PageUp': true
+		ArrowDown: true,
+		ArrowUp: true,
+		End: true,
+		Home: true,
+		PageDown: true,
+		PageUp: true
 	};
 
 	var fixScroll = function (value) {
@@ -52,7 +52,7 @@
 			direction = delta > 0 ? 'up' : 'down';
 		}
 		return direction;
-	}
+	};
 
 	var preventDefault = function (e) {
 		var scrollingZone = $(e.target).closest(selectors.scrollingZone);
@@ -99,7 +99,7 @@
 			if (window.removeEventListener) {
 				window.removeEventListener('DOMMouseScroll', preventDefault, false);
 			}
-			window.onmousewheel = document.onmousewheel = null; 
+			window.onmousewheel = document.onmousewheel = null;
 			window.onwheel = null;
 			window.ontouchmove = null;
 			document.onkeydown = null;
