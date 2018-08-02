@@ -9,7 +9,17 @@
  *      -pad : Add/remove padding-right scrollbar size fix
  *      -right : Add/remove right scrollbar size fix
  *      -margin : Add/remove margin-right scrollbar size fix
+
+ *  Strategies
+ *      You can pass a strategy in the data object when notifying site addScroll/removeScroll
+ *      - hideOverflow (default): Add css to limit the overflow of html and body
+ *      - preventEvent: Blocks mousewheel, swipe, and some keys events to disable scrolling without changing the css
+
+ *  Scrolling zone
+ *      For the preventEvent strategy, it is possible to have a scrolling zone 
+ *      where the events wont be block if the zone is scrollable
  */
+
 (function ($, undefined) {
 
 	'use strict';
