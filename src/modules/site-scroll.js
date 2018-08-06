@@ -27,8 +27,6 @@
 	var win = $(window);
 	var html = $('html');
 
-	var site = $('site');
-
 	var selectors = {
 		scrollingZone: '.js-scrolling-zone',
 		scrollingZoneContent: '.js-scrolling-zone-content'
