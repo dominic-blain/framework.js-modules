@@ -13,10 +13,11 @@
  *  Strategies
  *      You can pass a strategy in the data object when notifying site addScroll/removeScroll
  *      - hideOverflow (default): Add css to limit the overflow of html and body
- *      - preventEvent: Blocks mousewheel, swipe, and some keys events to disable scrolling without changing the css
+ *      - preventEvent: Blocks mousewheel, swipe, and some keys events to disable
+ *        scrolling without changing the css
 
  *  Scrolling zone
- *      For the preventEvent strategy, it is possible to have a scrolling zone 
+ *      For the preventEvent strategy, it is possible to have a scrolling zone
  *      where the events wont be block if the zone is scrollable
  */
 
@@ -34,7 +35,7 @@
 
 	var strategies = {
 		preventEvent: {
-			add: function() {
+			add: function () {
 				if (window.removeEventListener) {
 					window.removeEventListener('DOMMouseScroll', preventDefault, false);
 				}
@@ -43,7 +44,7 @@
 				window.ontouchmove = null;
 				document.onkeydown = null;
 			},
-			remove: function() {
+			remove: function () {
 				if (window.addEventListener) {// older FF
 					window.addEventListener('DOMMouseScroll', preventDefault, false);
 				}
@@ -54,11 +55,11 @@
 			}
 		},
 		hideOverflow: {
-			add: function() {
+			add: function () {
 				html.removeClass('no-scroll');
 				fixScroll(0);
 			},
-			remove: function() {
+			remove: function () {
 				if (!html.hasClass('no-scroll')) {
 					var x = win.width();
 					html.addClass('no-scroll');
@@ -66,7 +67,7 @@
 				}
 			}
 		}
-	}
+	};
 	
 	var keys = {
 		ArrowDown: true,
@@ -136,9 +137,9 @@
 		}
 	};
 
-	var getStrategy = function(data) {
+	var getStrategy = function (data) {
 		return data && data.strategy ? data.strategy : 'hideOverflow';
-	}
+	};
 
 	var addScroll = function (key, data) {
 		strategies[getStrategy(data)].add();
