@@ -37,7 +37,7 @@
 		}
 
 		// Check if dimension needs to change
-		if (srcFormat.indexOf(dimension) == -1) {
+		if (srcFormat.indexOf(dimension) === -1) {
 			var newSrcFormat = '';
 			if (dimension == '$w') {
 				newSrcFormat = srcFormat.replace('0/$h', '$w/0');
