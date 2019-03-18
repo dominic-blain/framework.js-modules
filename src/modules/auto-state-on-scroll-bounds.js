@@ -170,9 +170,6 @@
 			articleChanger: {
 				enter: refreshAll
 			},
-			decisionTree: {
-				nodeLoaded: refreshAll
-			},
 			autoStateOnScrollBounds: {
 				refreshAll: refreshAll
 			}
