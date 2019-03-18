@@ -8,14 +8,14 @@
  		<add class="js-scroll-bounds-ctn" />
  		<add data-scroll-bounds-threshold="0.1" />
  		
- 		<add data-x-start-visible-state-add-class="" />
-	 	<add data-x-start-visible-state-rem-class="" />
-	 	<add data-x-end-visible-state-add-class="" />
-	 	<add data-x-end-visible-state-rem-class="" />
-	 	<add data-y-start-visible-state-add-class="" />
-	 	<add data-y-start-visible-state-rem-class="" />
-	 	<add data-y-end-visible-state-add-class="" />
-	 	<add data-y-end-visible-state-rem-class="" />
+ 		<add data-x-start-state-add-class="" />
+	 	<add data-x-start-state-rem-class="" />
+	 	<add data-x-end-state-add-class="" />
+	 	<add data-x-end-state-rem-class="" />
+	 	<add data-y-start-state-add-class="" />
+	 	<add data-y-start-state-rem-class="" />
+	 	<add data-y-end-state-add-class="" />
+	 	<add data-y-end-state-rem-class="" />
  	
  	Content: Element that is inside the container and that contains all of the content.
  			 Will be used to evaluate total scrolling width.
