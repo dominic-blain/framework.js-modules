@@ -28,7 +28,6 @@
 	var site = $('#site');
 	var scrollTimer = 0;
 	var resizeTimer = 0;
-	var curY = 0;
 	
 	var elements = $();
 	var defaultThreshold = 0;
