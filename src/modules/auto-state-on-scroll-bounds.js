@@ -49,9 +49,7 @@
 			var x = t.outerWidth() + t.offset().left;
 			var y = t.outerHeight() + t.offset().top;
 			
-			if (x > b.x) {
-				b.x = x;
-			}
+			b.x = Math.max(x, b.x);
 			
 			if (y > b.y) {
 				b.y = y;
