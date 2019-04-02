@@ -155,14 +155,14 @@
 	};
 	
 	var init = function () {
-		setTimeout(onResize, 1000);
-		setTimeout(onResize, 2000);
+		onResize();
 	};
 	
 	var actions = function () {
 		return {
 			site: {
-				resize: onResize
+				resize: onResize,
+				loaded: onResize
 			},
 			page: {
 				enter: refreshAll
