@@ -64,7 +64,7 @@
 		return b;
 	};
 	
-	var getData = function (elem) {
+	var computeStates = function (elem) {
 		var ctn = elem.closest(SELECTOR_CTN);
 		var curX = Math.floor(elem.scrollLeft());
 		var curY = Math.floor(elem.scrollTop());
@@ -117,7 +117,7 @@
 	var onElementScroll = function () {
 		var t = $(this);
 		
-		getData(t);
+		computeStates(t);
 		
 		window.craf(scrollTimer);
 		scrollTimer = window.raf(function () {
@@ -142,7 +142,7 @@
 		resizeTimer = window.raf(function () {
 			elements.each(function () {
 				var t = $(this);
-				getData(t);
+				computeStates(t);
 				updateData(t);
 			});
 		});
