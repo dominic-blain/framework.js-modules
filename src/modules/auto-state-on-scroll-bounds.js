@@ -49,10 +49,7 @@
 			var y = t.outerHeight() + t.offset().top;
 			
 			b.x = Math.max(x, b.x);
-			
-			if (y > b.y) {
-				b.y = y;
-			}
+			b.y = Math.max(y, b.y);
 		});
 		
 		b.x = Math.floor(b.x);
