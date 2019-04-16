@@ -52,8 +52,9 @@
 			b.y = Math.max(y, b.y);
 		});
 		
-		b.x = Math.floor(b.x);
-		b.y = Math.floor(b.y);
+		// Removes everything to the right of the decimal
+		b.x = ~~b.x;
+		b.y = ~~b.y;
 		
 		return b;
 	};
