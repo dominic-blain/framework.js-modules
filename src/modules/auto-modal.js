@@ -1,7 +1,7 @@
 /**
  *  @author Deux Huit Huit
  *
- *  popup
+ *  auto-modal
  */
 (function ($, undefined) {
 	
@@ -173,7 +173,7 @@
 		};
 	};
 	
-	App.modules.exports('modal', {
+	App.modules.exports('auto-modal', {
 		actions: actions,
 		init: init
 	});
