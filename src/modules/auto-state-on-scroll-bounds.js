@@ -78,6 +78,10 @@
 		var xEndVisible = !isScrollableX || (scrollW - (curX + elemW)) <= xThreshold;
 		var yStartVisible = !isScrollableY || curY <= yThreshold;
 		var yEndVisible = !isScrollableY || (scrollH - (curY + elemH)) <= yThreshold;
+
+		if (ctn.length === 0) {
+			App.log('Auto state on scroll bounds: No ctn found');
+		}
 		
 		elem.data('scroll-bounds-callback', function () {
 			App.modules.notify('changeState.update', {
