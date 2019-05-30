@@ -61,19 +61,18 @@
 	
 	var computeStates = function (elem) {
 		var ctn = elem.closest(SELECTOR_CTN);
-		var curX = Math.floor(elem.scrollLeft());
-		var curY = Math.floor(elem.scrollTop());
-		var elemW = Math.floor(elem.outerWidth());
-		var elemH = Math.floor(elem.outerHeight());
-		var scrollW = Math.floor(elem.prop('scrollWidth'));
-		var scrollH = Math.floor(elem.prop('scrollHeight'));
+		var curX = ~~elem.scrollLeft();
+		var curY = ~~elem.scrollTop();
+		var elemW = ~~elem.outerWidth();
+		var elemH = ~~elem.outerHeight();
+		var scrollW = ~~elem.prop('scrollWidth');
+		var scrollH = ~~elem.prop('scrollHeight');
 		var isScrollableX = scrollW > elemW;
 		var isScrollableY = scrollH > elemH;
 		var thresholdValue = !!elem.attr(ATTR_THRESHOLD) ?
 			parseFloat(elem.attr(ATTR_THRESHOLD)) : defaultThreshold;
-		var xThreshold = Math.floor(scrollW * thresholdValue);
-		var yThreshold = Math.floor(scrollH * thresholdValue);
-		
+		var xThreshold = ~~scrollW * thresholdValue;
+		var yThreshold = ~~scrollH * thresholdValue;
 		
 		var xStartVisible = !isScrollableX || curX <= xThreshold;
 		var xEndVisible = !isScrollableX || (scrollW - (curX + elemW)) <= xThreshold;
