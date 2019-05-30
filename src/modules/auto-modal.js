@@ -143,7 +143,17 @@
 			action: isVisible ? 'on' : 'off'
 		});
 	};
-	
+
+	var showBg = function (key, data) {
+		var callback = !!data ? data.callback : $.noop;
+		toggleBg(true, callback);
+	};
+
+	var hideBg = function (key, data) {
+		var callback = !!data ? data.callback : $.noop;
+		toggleBg(false, callback);
+	};
+
 	var init = function () {
 		// init a11y for popup that is already opened on load
 		// how to know which popup to do?
@@ -161,14 +171,8 @@
 				show: onShowModal,
 				hide: onHideModal,
 				prepare: onPrepareModal,
-				showBg: function (key, data) {
-					var callback = !!data ? data.callback : $.noop;
-					toggleBg(true, callback);
-				},
-				hideBg: function (key, data) {
-					var callback = !!data ? data.callback : $.noop;
-					toggleBg(false, callback);
-				}
+				showBg: showBg,
+				hideBg: hideBg
 			}
 		};
 	};
